@@ -1,5 +1,5 @@
 ﻿using IndustrialImpl.Calculators;
-using IndustrialImpl.Labs;
+using IndustrialImpl.Practicums;
 using IndustrialImpl.Models;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ namespace IndustrialImpl
     {
         static void Main(string[] args)
         {
-            Console.Write("Выберите лабораторную работу (1-5, 0 - выход): ");
+            Console.Write("Выберите практикум (1-5, 0 - выход): ");
             var choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "0": break;
-                case "2": Lab2.Run(); break;
+                case "2": Practicum2.Run(); break;
                     // ...
             }
         }
