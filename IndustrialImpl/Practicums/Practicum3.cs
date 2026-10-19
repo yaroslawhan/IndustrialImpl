@@ -1,6 +1,7 @@
 ﻿using IndustrialImpl.Models;
 using IndustrialImpl.Calculators;
 using IndustrialImpl.Reports;
+using System.Diagnostics;
 
 namespace IndustrialImpl.Practicums
 {
@@ -40,6 +41,25 @@ namespace IndustrialImpl.Practicums
             double XCompanyValue = CompanyValueCalculators.CombinedCompanyValueCalculator(OverallXCompanyFinancialMetrics);
             Console.WriteLine("\nThe value of YADRO company (financially dependent) = " + Math.Round(YadroValue, 4, MidpointRounding.AwayFromZero).ToString() + " (mill. rubs)");
             Console.WriteLine("The value of X Holding company (financially independent) = " + Math.Round(XCompanyValue, 4, MidpointRounding.AwayFromZero).ToString() + " (mill. rubs)");
+
+            // Formatting values for Java
+            string val1 = YadroValue.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            string val2 = XCompanyValue.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+            // Pass both numbers as arguments to the agent
+            string javaArgs = $"-cp \"C:\\Users\\yaros\\Downloads\\Jade\\lib\\jade.jar;.\" jade.Boot -gui -agents \"Sender:FirstAgentTest({val1},{val2});SecondAgent:SecondAgent\"";
+
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "java",
+                Arguments = javaArgs,
+                UseShellExecute = false,
+                CreateNoWindow = false,
+                WorkingDirectory = @"C:\Users\yaros\Documents\Университет\7 семестр\Промышленные системы\IndustrialImpl\Jade project"
+            };
+
+            Console.WriteLine("Running JADE...");
+            Process.Start(psi);
         }
     }
 }
