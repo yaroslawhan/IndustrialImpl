@@ -18,6 +18,7 @@ namespace IndustrialImpl
             {
                 case "0": break;
                 case "2": Practicum2.Run(); break;
+                case "3": Practicum3.Run(); break;
                     // ...
             }
         }

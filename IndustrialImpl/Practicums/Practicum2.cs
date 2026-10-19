@@ -15,8 +15,8 @@ namespace IndustrialImpl.Practicums
             double[] departmentsIncomesShares = {0.15, 0.2, 0.25, 0.4}; // Sorted by this values
             int departmentsCount = departmentsNames.Length;
             for (int i = 0; i < departmentsCount; i++) myCompany.Departments.Add(new Department {Name = departmentsNames[i], EmployeesShare = departmentsEmployeesShares[i], IncomeShare = departmentsIncomesShares[i]}); // Adds departments into the company
-            double[] cumulatedDepartmentsEmployeesShares = ConcentrationCalculator.OrderedCrsCalculator(departmentsEmployeesShares); // Calculating the cumulated departments employees shares
-            double[] cumulatedDepartmentsIncomesShares = ConcentrationCalculator.OrderedCrsCalculator(departmentsIncomesShares); // Calculating the cumulated departments incomes shares
+            double[] cumulatedDepartmentsEmployeesShares = ConcentrationCalculators.OrderedCrsCalculator(departmentsEmployeesShares); // Calculating the cumulated departments employees shares
+            double[] cumulatedDepartmentsIncomesShares = ConcentrationCalculators.OrderedCrsCalculator(departmentsIncomesShares); // Calculating the cumulated departments incomes shares
 
             // Printing the data table
             string[] tableHeaders = {"Вид предприятия", "Доля сотрудников", "Доля дохода", "Накопленная доля сотрудников", "Накопленная доля дохода"};
@@ -33,10 +33,10 @@ namespace IndustrialImpl.Practicums
                 Console.WriteLine($"Для {i+1} первых(первого) отделов(а): Cr_income = " + crs_income[i]);
 
             // Calculating and printing the Herfindahl-Hirshman index (rounded by 4 letters)
-            Console.WriteLine("\nИндекс Херфиндаля-Хиршмана по доходам отделов:\nHHI = " + Math.Round(ConcentrationCalculator.HerfindahlHirshmanCalculator(departmentsIncomesShares), 4, MidpointRounding.AwayFromZero));
+            Console.WriteLine("\nИндекс Херфиндаля-Хиршмана по доходам отделов:\nHHI = " + Math.Round(ConcentrationCalculators.HerfindahlHirshmanCalculator(departmentsIncomesShares), 4, MidpointRounding.AwayFromZero));
 
             // Calculating and printing the Gini coefficient (rounded by 4 letters)
-            Console.WriteLine("\nКоэффициент Джини:\nG = " + Math.Round(ConcentrationCalculator.GiniCalculator(departmentsEmployeesShares, departmentsIncomesShares), 4, MidpointRounding.AwayFromZero));
+            Console.WriteLine("\nКоэффициент Джини:\nG = " + Math.Round(ConcentrationCalculators.GiniCalculator(departmentsEmployeesShares, departmentsIncomesShares), 4, MidpointRounding.AwayFromZero));
 
             // Printing the Lorenz plot
             PlotPrinter.LorenzCurveChartPrinter(cumulatedDepartmentsEmployeesShares, cumulatedDepartmentsIncomesShares, tableHeaders[3], tableHeaders[4]);

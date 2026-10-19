@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IndustrialImpl.Calculators
 {
-    static class ConcentrationCalculator // Includes market concentration index, Herfindahl-Hirshman index and Gini coefficient calculators (lab 2)
+    static class ConcentrationCalculators // Includes market concentration index, Herfindahl-Hirshman index and Gini coefficient calculators (practicum 2)
     {
         public static double CrCalculator(double[] shares) { // Market concentration index calculator
             double metric = 0.0;
@@ -43,7 +43,7 @@ namespace IndustrialImpl.Calculators
 
         public static double GiniCalculator(double[] employeeShares, double[] incomeShares) { // Gini coefficient calculator
             double metric = 1;
-            double[] cumulativeIncomeShares = ConcentrationCalculator.OrderedCrsCalculator(incomeShares);
+            double[] cumulativeIncomeShares = ConcentrationCalculators.OrderedCrsCalculator(incomeShares);
             int sharesLength = employeeShares.Length;
 
             for (int i = 0; i < sharesLength; i++) metric -= 2 * (employeeShares[i] * cumulativeIncomeShares[i]);
